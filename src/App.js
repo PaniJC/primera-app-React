@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Cajerael
+          Learn React Cajerael!
         </a>
       </header>
     </div>
