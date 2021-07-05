@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Juan Camilo y Jeronimo
+          Learn React Cajerael
         </a>
       </header>
     </div>
