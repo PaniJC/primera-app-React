@@ -1,41 +1,19 @@
-import { useState} from "react";
+import { useState } from "react";
 //El componente es reactiuvo porque se está llamando una y otra vez y está actualizando lo que tiene que actualizar
 function App() { // Este es un componente funcional y no de clase
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [nombre, setNombre] = useState("Juan Camilo Paniagua Alvarez");
+  const [edad, setEdad] = useState();
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleMatrixClick = () => {
+    setNombre("codepanijc");
   };
 
-  const handlePasswordChange = ({ target : { value }}) => { //Otra forma de hacerlo
-    setPassword(value);
-  };
-
-  const handleFormSubmit = (event) => { //Otra forma de hacerlo
-    event.preventDefault();
-    alert(`Usuario: ${email}, Password: ${password}`);
-  };
-
-  console.log(email);
-  console.log(password);
-
-  return (
+  return(
     <div className="App">
-      <form onSubmit={handleFormSubmit}>
-        <h2>Inciar sesión</h2>
-        <label>
-          Correo
-          <input type="email" value={email} onChange = {handleEmailChange}/>
-        </label>
-        <label>
-          Contraseña
-          <input type="password" value={password} onChange = {handlePasswordChange}/>
-        </label>
-        <button type="submit">
-          Enter
-        </button>
-      </form>
+      <h2>Lo estás haciendo muy bien {nombre}</h2>
+      <button onClick={handleMatrixClick}>
+        MatriX
+      </button>
     </div>
   );
 }
