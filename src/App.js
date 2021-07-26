@@ -1,39 +1,46 @@
-import { useState, Component } from "react";
+import { useEffect, useState } from "react";
 
-//El componente es reactiuvo porque se está llamando una y otra vez y está actualizando lo que tiene que actualizar
-class App extends Component {
-  constructor(props) {
-    super(props);
-    console.log("Constructor");
-    this.state = {
-      name: "",
-    }
-  }
+const jasonData = [{
+  key:"1",
+  name:"Juan Camilo"
+},{
+  key:"2",
+  name:"Jeronimo"
+},{
+  key:"3",
+  name:"Elizabeth"
+},{
+  key:"4",
+  name:"Rachel"
+},{
+  key:"5",
+  name:"Sebastian"
+}];
 
-  //Es bueno tenerlo para hacer llamadas a la API o cualquier llamado a acción o función enc aso que el cliente lo requiera
-  componentDidMount() {
-    console.log("Did Mount");
-  }
+//Como la función unicamente retorna algo, no es necesario tener las llaves; yo las voy a dejar. {jasonData?.map((value) =>())}
+ //El interrogante se usa para validar si no existe la función de map porque sea un arreglo indefinod, que entonces lo ignore.
+ //Tambien puedo colocar el index, pero como última opción
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  //Componente que se ejecuta en el ciclo de vida, cuando el componente se actualiza; unicamente se ejecuta cuando nosotros estamos actualizando el componente. El escribir dentro de un input me está provocando un rerenderizado. Si necesitara ejecutar una operación después de que cambie el estado, por acá se puede hacer.
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log("Did Update");
-  }
+  useEffect(()=>{
+    setTimeout(() => {
+      setIsLoading(false);
+    },4000);
+  }, []);
 
-  //Le digo a la aplicaión que NO se actualice con nada del mundo (si es false); sirve para prevenir rerenderizers innecesarios
-  shouldComponentUpdate() {
-    return true;
-  }
+   const renderData = () => {
+    return jasonData?.map((value) => (
+        <div key={value.key}> 
+          <p>{value.name}</p>
+        </div> 
+    ))};
 
-  //Sirve para hacer ciertos cálculos que caigan a componentDidUpdate
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log("prevProps, prevState");
-  }
-
-  render() {
-    return(<div>
-      <input value={this.state.name} onChange = {({target: { value }}) => this.setState({ name: value})} />
-    </div>);
-  }
+    return(
+    <div>
+      {isLoading ? <h2>Is Loading...</h2> : renderData()}  
+    </div>
+    );
 }
+
 export default App;
